@@ -1,6 +1,6 @@
 import fp from "fastify-plugin";
 
-const WHITE_LIST = ["/v1/auth", "/health"];
+const WHITE_LIST = ["/v1/oauth2", "/health"];
 
 export default fp(async (app) => {
   app.addHook("onRequest", async (request, reply) => {
