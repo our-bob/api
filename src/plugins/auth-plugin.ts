@@ -12,6 +12,21 @@ export default fp(async (app) => {
       return;
     }
 
+    let token: string | undefined;
+
+    // Cookie 확인
+    if (request.cookies?.accessToken) {
+      token = request.cookies.accessToken;
+    }
+
+    // Authorization header fallback
+    if (!token && request.headers.authorization) {
+      const [type, value] = request.headers.authorization.split(" ");
+      if (type === "Bearer") {
+        token = value;
+      }
+    }
+
     try {
       await request.jwtVerify();
     } catch {
