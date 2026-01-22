@@ -6,7 +6,19 @@ import cookiePlugin from "./plugins/cookie-plugin.js";
 import routes from "./routes/index.js";
 import corsPlugin from "./plugins/cors-plugin.js";
 
-const fastify = await Fastify({ logger: true });
+const fastify = await Fastify({
+  logger: {
+    transport: {
+      target: "pino-pretty",
+      options: {
+        colorize: true,
+        translateTime: "HH:MM:ss",
+        ignore: "pid,hostname",
+        singleLine: false,
+      },
+    },
+  },
+});
 
 // plugins
 await fastify.register(corsPlugin);
