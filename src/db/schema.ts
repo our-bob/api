@@ -118,8 +118,3 @@ export const mealGroups = pgTable(
     uniqueMealGroup: uniqueIndex("meal_groups_uidx").on(t.mealId, t.groupId),
   })
 );
-
-// DB의 구조
-// User ── GroupMember ── Group
-//   │
-//   └── Meal ── MealGroup ── Group

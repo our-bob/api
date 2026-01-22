@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
 import { db } from "../db/db.js";
 import { users } from "../db/schema.js";
-import { PatchMeSchema } from "../routes/users/me/patch-me.route.js";
+import { PatchMeSchema } from "../routes/users/me/patch.route.js";
 
 export async function getMe(id: string) {
   const [user] = await db.select().from(users).where(eq(users.id, id));

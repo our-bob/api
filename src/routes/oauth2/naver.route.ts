@@ -2,7 +2,7 @@ import type { FastifyInstance } from "fastify";
 import {
   getAuthorizedUrl,
   handleNaverCallback,
-} from "../../service/oauth2-service.js";
+} from "../../service/oauth2.service.js";
 
 export default async function naverOAuth2Route(app: FastifyInstance) {
   app.get("/", async (_, reply) => {

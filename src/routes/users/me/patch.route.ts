@@ -1,5 +1,5 @@
 import type { FastifyInstance } from "fastify";
-import { patchMe } from "../../../service/user-service.js";
+import { patchMe } from "../../../service/user.service.js";
 import { Static, Type } from "@sinclair/typebox";
 
 const _PatchMeSchema = Type.Object({
@@ -9,7 +9,7 @@ const _PatchMeSchema = Type.Object({
 
 export type PatchMeSchema = Static<typeof _PatchMeSchema>;
 
-export default async function patchMeRoute(app: FastifyInstance) {
+export default async function patchUsersMeRoute(app: FastifyInstance) {
   app.patch(
     "/",
     { schema: { body: _PatchMeSchema } },
@@ -19,11 +19,7 @@ export default async function patchMeRoute(app: FastifyInstance) {
 
       const updatedUser = await patchMe(userId, body);
 
-      return reply.code(200).send({
-        result: "success",
-        message: "User updated",
-        user: updatedUser,
-      });
+      return reply.code(200).send(updatedUser);
     }
   );
 }
